@@ -1,0 +1,32 @@
+<div class="notification-place">
+
+  <mat-card class="example-card" appearance="outlined">
+
+    <mat-card-header style="padding: 0px;">
+      <mat-card-title>{{ currentAlert()?.alertType }}</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-footer class="example-card-footer">
+
+      <mat-chip-set>
+
+        <mat-chip [ngClass]="getColorType(currentAlert()?.genericType)">
+          <p>{{ currentAlert()?.genericType }}</p>
+        </mat-chip>
+
+        <mat-chip>
+          <p>{{ currentAlert()?.timestamp }}</p>
+        </mat-chip>
+
+      </mat-chip-set>
+
+    </mat-card-footer>
+
+    <mat-card-content style="padding: 0px;">
+      <p class="message">{{ currentAlert()?.message }}</p>
+    </mat-card-content>
+
+  </mat-card>
+
+
+</div>

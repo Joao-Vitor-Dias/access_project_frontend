@@ -1,0 +1,27 @@
+<div>
+
+  <form [formGroup]="sendMessageForm" (ngSubmit)="sendMessage()" id="sendMessageForm">
+
+    <span class="numbers">
+
+      <label>Número(s)</label>
+      <input type="text" formControlName="numberPhone" placeholder="11111111111,22222222222 ....">
+
+    </span>
+
+    <span class="message">
+
+      <label>Mensagem</label>
+      <textarea formControlName="principal" placeholder="Insira sua mensagem aqui ...."></textarea>
+
+    </span>
+
+  </form>
+
+  <button type="submit" form="sendMessageForm">
+
+    <mat-icon>arrow_forward</mat-icon>
+
+  </button>
+
+</div>

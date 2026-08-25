@@ -1,0 +1,73 @@
+:host {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+
+  display: block;
+  width: 30%;
+
+  box-shadow: 15px 15px 10px;
+
+  border-radius: 15px;
+
+  .notification-place{
+
+    .example-card{
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      gap: 5px;
+
+      padding: 15px 50px 15px 50px;
+
+      p {
+        font-size: 20px;
+
+        overflow-wrap: break-word;
+      }
+
+    }
+
+  }
+
+}
+
+
+.successful{
+
+  background-color: green !important;
+
+  p {
+
+    color: rgb(255, 255, 255);
+
+  }
+
+}
+
+.try{
+
+  background-color: rgb(158, 158, 0) !important;
+
+  p {
+
+    color: white;
+
+  }
+
+}
+
+.failure{
+
+  background-color: red !important;
+
+  p {
+
+    color: white;
+
+  }
+
+}

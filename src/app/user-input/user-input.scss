@@ -1,0 +1,117 @@
+:host {
+
+  display: flex;
+  width: 100%;
+  min-height: 100%;
+
+}
+
+div {
+
+  border-radius: 15px;
+
+  background-color: gray;
+
+  display: flex;
+  flex-direction: row;
+
+  width: 100%;
+  min-height: 100%;
+
+  gap: 10px;
+
+  form {
+
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    display: flex;
+    flex-direction: column;
+
+    width: 50vw;
+
+    font-size: 30px;
+
+    .numbers {
+
+      display: flex;
+      flex-direction: column;
+
+      flex: 3;
+
+      label {
+        padding: 15px;
+      }
+
+      input {
+
+        height: 100%;
+
+        border-radius: 15px;
+
+        font-size: 30px;
+        text-align: left;
+        padding: 10px;
+
+      }
+
+    }
+
+    .message {
+
+      flex: 7;
+
+      display: flex;
+      flex-direction: column;
+
+      label {
+        padding: 15px;
+      }
+
+      textarea {
+        font-size: 25px;
+        text-align: left;
+        padding: 10px;
+        resize: none;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        border-radius: 15px;
+
+      }
+
+      textarea:focus {
+        outline: none;
+        box-shadow: none;
+      }
+
+    }
+
+  }
+
+  button {
+
+    margin-top: 65px;
+    margin-right: 10px;
+
+    height: 10vh;
+    width: 10vw;
+
+    border-radius: 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    mat-icon {
+      font-size: 80px;
+      width: 80px;
+      height: 80px;
+    }
+
+  }
+
+}
