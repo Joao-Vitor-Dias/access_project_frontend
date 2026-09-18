@@ -1,0 +1,13 @@
+<div>
+  <h1>
+    {{ name }}
+  </h1>
+  <button (click)="functionConnection()">
+    <mat-icon>
+      play_arrow
+    </mat-icon>
+  </button>
+  <span
+    [class]="isClosedConnection() ? 'deactived' : 'actived'">
+  </span>
+</div>

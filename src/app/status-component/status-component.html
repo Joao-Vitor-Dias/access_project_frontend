@@ -1,0 +1,28 @@
+<div>
+
+  @if (open) {
+
+    <app-image-menu (closeMenu)="open = false"/>
+
+  }
+
+  <span>
+
+    <button (click)="open = !open">
+
+      <mat-icon>menu</mat-icon>
+
+    </button>
+
+  </span>
+
+  <span class="status-options-container">
+
+
+      <app-status-card [name]="nameDriverPlaceHolher" [functionConnection]="tryConnectionDrive" [alertEnumPlaceHolder]="'DRIVER'"/>
+      <app-status-card [name]="nameWhatsappPlaceHoler" [functionConnection]="tryConnectionWhatsapp" [alertEnumPlaceHolder]="'WHATSAPP'"/>
+
+  </span>
+
+
+</div>

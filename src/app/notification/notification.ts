@@ -23,19 +23,22 @@ export class Notification {
 
   private subscription?: Subscription;
 
-  mockAlert: Alert = {
-    alertType: AlertType.TRY_CONNECT_DRIVE,
-    timestamp: new Date ('2026-07-15T14:30:45.123'),
-    message: 'Mensagem de teste .... mock:',
+  mockAlert: AlertResponse = {
+    alertType: AlertType.FIRST_LOG,
+    message: 'Seja bem vindo ao sistema interno para envio de mensagens',
     data: {
-      'phone': '19997641308',
-      'message': 'Oi ... você está bem?'
-    }
+      'phone': '000000000000',
+      'message': 'Seja bem vindo ao sistema interno para envio de mensagens'
+    },
+    genericType: 'SUCCESSFUL',
+    timestamp: '00000000000000'
   }
 
   constructor(private sseService: SseService){}
 
   ngOnInit(): void{
+
+    this.currentAlert.set(this.mockAlert);
 
     this.subscription = this.sseService
       .connect()

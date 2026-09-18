@@ -1,17 +1,17 @@
-import { Injectable, NgZone } from '@angular/core';
+import { Injectable, NgZone, signal } from '@angular/core';
 import { Observable } from 'rxjs';
-import { executeSchedule } from 'rxjs/internal/util/executeSchedule';
 import { Alert } from '../models/alert';
+import { AlertType } from '../models/enums/alert-type';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SseService {
 
-  constructor(private zone: NgZone) {}
-
-
   url: string = "http://localhost:8080/notifications/subscribe";
+  currentAlert = signal<Alert | null>(null);
+
+  constructor(private zone: NgZone) {}
 
   connect(): Observable<any>{
 
@@ -26,6 +26,7 @@ export class SseService {
         this.zone.run(() => {
 
           observer.next(alert);
+          this.currentAlert.set(alert);
 
         })
 

@@ -1,0 +1,27 @@
+<div class="overlay">
+
+    <div class="floating-menu">
+
+      <button (click)="fechar()">
+        <mat-icon>close</mat-icon>
+      </button>
+
+      <span>
+        <h1>QR code</h1>
+        <button type="button" (click)="getQrCode()">
+          <mat-icon>sync</mat-icon>
+        </button>
+      </span>
+
+      @if (qrCodeUrl) {
+        <img
+          [src]="qrCodeUrl"
+          alt="QR Code"
+        />
+      } @else {
+        <p>QR Code não disponível.</p>
+      }
+
+    </div>
+
+</div>
