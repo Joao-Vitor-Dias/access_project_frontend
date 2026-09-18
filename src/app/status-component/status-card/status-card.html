@@ -2,9 +2,14 @@
   <h1>
     {{ name }}
   </h1>
-  <button (click)="functionConnection()">
+  <button (click)="functionConnection()" [disabled]="!isButtonConnectWorking">
     <mat-icon>
       play_arrow
+    </mat-icon>
+  </button>
+  <button (click)="functionDisconnection()" [disabled]="!isButtonDisconnectWorking">
+    <mat-icon>
+      cancel
     </mat-icon>
   </button>
   <span

@@ -1,5 +1,5 @@
 import { BackComunication } from './../../services/back-comunication';
-import { ChangeDetectorRef, Component, EventEmitter, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Output, signal } from '@angular/core';
 import { MatIcon } from "@angular/material/icon";
 
 @Component({
@@ -13,7 +13,11 @@ export class ImageMenu {
   @Output()
   closeMenu = new EventEmitter<void>();
 
+  isQrToExpose: boolean = true;
+
   qrCodeUrl: string | null = null;
+
+  screenshotCodeUrl: string | null = null;
 
   constructor(private backServiceCall: BackComunication, private cdr: ChangeDetectorRef){}
 
@@ -50,9 +54,47 @@ export class ImageMenu {
 
   }
 
+  getScreenshot(){
+
+    this.backServiceCall.getScreenshot().subscribe({
+      next: (image: Blob) => {
+        console.log('2 - recebeu imagem');
+        console.log('Blob:', image);
+        console.log('Size:', image.size);
+        console.log('Type:', image.type);
+
+        if (this.screenshotCodeUrl) {
+          URL.revokeObjectURL(this.screenshotCodeUrl);
+        }
+
+        this.screenshotCodeUrl = URL.createObjectURL(image);
+
+        console.log('3 - screenshotodeUrl:', this.screenshotCodeUrl);
+
+        this.cdr.detectChanges();
+      },
+
+      error: (error) => {
+        console.error('Erro ao buscar screenshot Code:', error);
+      }
+
+    });
+
+  }
+
+  changeImageToExpose(){
+
+    this.isQrToExpose = !this.isQrToExpose;
+
+  }
+
   ngOnDestroy(): void {
     if (this.qrCodeUrl) {
       URL.revokeObjectURL(this.qrCodeUrl);
+    }
+
+    if (this.screenshotCodeUrl) {
+      URL.revokeObjectURL(this.screenshotCodeUrl);
     }
   }
 

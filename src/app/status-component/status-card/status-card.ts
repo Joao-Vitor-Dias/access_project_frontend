@@ -1,3 +1,4 @@
+import { BackComunication } from './../../../services/back-comunication';
 import { Component, computed, effect, Input, OnInit, signal } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { SseService } from '../../../services/sse-service';
@@ -18,11 +19,22 @@ export class StatusCard {
   functionConnection!: () => void;
 
   @Input()
+  functionDisconnection!: () => void;
+
+  @Input()
   alertEnumPlaceHolder!: string;
+
+  @Input()
+  isButtonConnectWorking!: boolean;
+
+  @Input()
+  isButtonDisconnectWorking!: boolean;
 
   isClosedConnection = signal<boolean>(true);
   successPlaceHolder = "SUCCESSFUL";
-  closePlaceHolder = "CLOSE"
+  disconnectPlaceHolder = "DISCONNECT";
+  connectPlaceHoler ="CONNECT";
+  closePlaceHolder = "CLOSE";
 
 
   constructor(private sseService: SseService) {
@@ -37,15 +49,30 @@ export class StatusCard {
 
       const alertType = alert.alertType;
 
+      if(alertType.includes("DRIVER") && alertType.includes(this.disconnectPlaceHolder)){
+
+        this.isClosedConnection.set(true);
+        return;
+
+      }
+
+      if(this.alertEnumPlaceHolder === "WHATSAPP" && alert.message.includes("Popup") && alertType.includes(this.successPlaceHolder)){
+
+        this.isClosedConnection.set(false);
+        return;
+
+      }
+
       if(alertType.includes(this.alertEnumPlaceHolder)){
 
-        if(alertType.includes(this.successPlaceHolder)){
+        if(alertType.includes(this.successPlaceHolder) && alertType.includes(this.connectPlaceHoler)){
 
           this.isClosedConnection.set(false);
           return;
+
         }
 
-        if(alertType.includes(this.closePlaceHolder)){
+        if(alertType.includes(this.closePlaceHolder) && alertType.includes(this.successPlaceHolder)){
 
           this.isClosedConnection.set(true);
           return;
@@ -58,6 +85,5 @@ export class StatusCard {
     });
 
   }
-
 
 }

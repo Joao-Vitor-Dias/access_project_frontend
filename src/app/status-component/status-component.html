@@ -19,8 +19,17 @@
   <span class="status-options-container">
 
 
-      <app-status-card [name]="nameDriverPlaceHolher" [functionConnection]="tryConnectionDrive" [alertEnumPlaceHolder]="'DRIVER'"/>
-      <app-status-card [name]="nameWhatsappPlaceHoler" [functionConnection]="tryConnectionWhatsapp" [alertEnumPlaceHolder]="'WHATSAPP'"/>
+      <app-status-card [name]="nameDriverPlaceHolher"
+                [functionConnection]="tryConnectionDrive"
+                [functionDisconnection]="disconnectDrive"
+                [alertEnumPlaceHolder]="'DRIVER'"
+                [isButtonConnectWorking]="true"
+                [isButtonDisconnectWorking]="true" />
+      <app-status-card [name]="nameWhatsappPlaceHoler"
+                [functionConnection]="closeWhatsappPopup"
+                [alertEnumPlaceHolder]="'WHATSAPP'"
+                [isButtonConnectWorking]="true"
+                [isButtonDisconnectWorking]="false" />
 
   </span>
 

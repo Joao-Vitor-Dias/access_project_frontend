@@ -19,4 +19,18 @@ export class BackComunication {
 
   }
 
+  getScreenshot(): Observable<Blob>{
+
+    return this.http.get(this.url + "/print", {
+      responseType: 'blob'
+    });
+
+  }
+
+  getTryConnection(path:string): Observable<void>{
+
+      return this.http.get<void>(this.url + path);
+
+  }
+
 }

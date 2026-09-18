@@ -9,17 +9,40 @@
       <span>
         <h1>QR code</h1>
         <button type="button" (click)="getQrCode()">
+          <mat-icon>photo_camera</mat-icon>
+        </button>
+        <h1>Screenshot</h1>
+        <button type="button" (click)="getScreenshot()">
+          <mat-icon>linked_camera</mat-icon>
+        </button>
+        <h1>Change</h1>
+        <button type="button" (click)="changeImageToExpose()">
           <mat-icon>sync</mat-icon>
         </button>
       </span>
 
-      @if (qrCodeUrl) {
+      @if (isQrToExpose) {
+
+        @if (qrCodeUrl) {
         <img
           [src]="qrCodeUrl"
           alt="QR Code"
         />
-      } @else {
-        <p>QR Code não disponível.</p>
+        } @else {
+          <p>QR Code não disponível.</p>
+        }
+
+      }@else {
+
+        @if (screenshotCodeUrl) {
+        <img
+          [src]="screenshotCodeUrl"
+          alt="Screenshot"
+        />
+        } @else {
+          <p>Screenshot não disponível.</p>
+        }
+
       }
 
     </div>

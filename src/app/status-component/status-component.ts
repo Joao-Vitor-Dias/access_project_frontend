@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { StatusCard } from "./status-card/status-card";
 import { MatIcon } from "@angular/material/icon";
 import { ImageMenu } from '../image-menu/image-menu';
@@ -15,18 +15,29 @@ export class StatusComponent {
   @Input()
   open = false;
 
+  private backServiceCall = inject(BackComunication);
+
   nameDriverPlaceHolher = "Conexão do Driver";
   nameWhatsappPlaceHoler = "Conxão do Whatsapp";
 
-  constructor(private backServiceCall: BackComunication){}
+  closeWhatsappPopup = () => {
 
-  tryConnectionWhatsapp(){
-    console.log("Tentando conexão whatsapp")
+    this.backServiceCall.getTryConnection("/close/popup")
+      .subscribe();
 
   }
 
-  tryConnectionDrive(){
-    console.log("Tentando conexão driver")
+  tryConnectionDrive = () => {
+
+    this.backServiceCall.getTryConnection("/connect")
+      .subscribe();
+
+  }
+
+  disconnectDrive = () => {
+
+    this.backServiceCall.getTryConnection("/disconnect")
+      .subscribe();
 
   }
 
